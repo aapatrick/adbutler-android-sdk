@@ -10,7 +10,7 @@
     tools:context="com.sparklit.sample.MainActivity">
 
     <Button
-        android:text="Request Placement"
+        android:text="@string/request_placement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button1"
@@ -20,7 +20,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Request Placements"
+        android:text="@string/request_placements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
@@ -31,7 +31,7 @@
         android:layout_marginTop="16dp" />
 
     <Button
-        android:text="Request Pixel"
+        android:text="@string/request_pixel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button3"
@@ -42,7 +42,7 @@
         android:layout_marginTop="16dp" />
 
     <Button
-        android:text="Record Impression"
+        android:text="@string/record_impression"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button4"
@@ -53,7 +53,7 @@
         android:layout_marginTop="16dp" />
 
     <Button
-        android:text="Record Click"
+        android:text="@string/record_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button5"
@@ -73,6 +73,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp"
         android:id="@+id/imageButton"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:contentDescription="@string/todo" />
 
 </RelativeLayout>
