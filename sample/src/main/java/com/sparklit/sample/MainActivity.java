@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.TextView;
+
+
 
 import com.sparklit.adbutler.AdButler;
 import com.sparklit.adbutler.Placement;
@@ -26,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button needHelpB = (Button)findViewById(R.id.needHelpB);
+
+        needHelpB.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v){
+
+                    }
+                }
+        );
     }
 
     public void requestPlacement(View view) {
@@ -47,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.getPlacements().size() > 0) {
                     final Placement placement = response.getPlacements().get(0);
                     if (placement != null) {
-                        ImageView imageView = (ImageView) findViewById(R.id.imageButton);
+                        ImageView imageView = (ImageView) findViewById(R.id.adButlerM);
 
                         imageView.setVisibility(View.VISIBLE);
                         imageView.setOnClickListener(new View.OnClickListener() {
