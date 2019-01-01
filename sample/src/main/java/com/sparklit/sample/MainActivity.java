@@ -4,11 +4,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.ImageView;
 import android.widget.Button;
-import android.widget.TextView;
-
+import android.widget.RelativeLayout;
+import android.transition.TransitionManager;
+import android.app.Activity;
 
 
 import com.sparklit.adbutler.AdButler;
@@ -26,20 +34,48 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
+    //ViewGroup activity_mainLayout;
+
+    @Overri de
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button needHelpB = (Button)findViewById(R.id.needHelpB);
+        /*
+        activity_mainLayout = findViewById(R.id.activity_mainLayout);
+        activity_mainLayout.setOnTouchListener(
+                new RelativeLayout.OnTouchListener(){
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        moveImage();
+                        return true;
+                    }
+                }
+        );
+        */
+        Button needHelpB = findViewById(R.id.needHelpB);
+        final ImageView adButlerPicture = findViewById(R.id.adButlerPicture);
 
         needHelpB.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v){
-
+                        adButlerPicture.setVisibility(View.VISIBLE);
+                        moveImage();
                     }
                 }
         );
+    }
+
+    public void moveImage(){
+        View adButlerPicture = findViewById(R.id.adButlerPicture);
+
+        //TransitionManager.beginDelayedTransition(activity_mainLayout);
+
+        RelativeLayout.LayoutParams positionRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        positionRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        positionRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+        adButlerPicture.setLayoutParams(positionRules);
     }
 
     public void requestPlacement(View view) {
@@ -61,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.getPlacements().size() > 0) {
                     final Placement placement = response.getPlacements().get(0);
                     if (placement != null) {
-                        ImageView imageView = (ImageView) findViewById(R.id.adButlerM);
+                        ImageView imageView = (ImageView) findViewById(R.id.adButlerPicture);
 
                         imageView.setVisibility(View.VISIBLE);
                         imageView.setOnClickListener(new View.OnClickListener() {
