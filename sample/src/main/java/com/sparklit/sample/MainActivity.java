@@ -19,6 +19,11 @@ import android.transition.TransitionManager;
 import android.app.Activity;
 
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.sparklit.adbutler.AdButler;
 import com.sparklit.adbutler.Placement;
 import com.sparklit.adbutler.PlacementRequestConfig;
@@ -32,15 +37,36 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends YouTubeBaseActivity {
 
     //ViewGroup activity_mainLayout;
-
-    @Overri de
+    YouTubePlayerView youtubePlayerView;
+    Button button;
+    YouTubePlayer.OnInitializedListener onInitializedListener;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        button = (Button) findViewById(R.id.videoB);
+        youtubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player_view);
+        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youTubePlayer.loadVideo("nwVTC9rS3Y0");
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                youtubePlayerView.initialize(PlayerConfig.API_KEY,onInitializedListener);
+            }
+        });
         /*
         activity_mainLayout = findViewById(R.id.activity_mainLayout);
         activity_mainLayout.setOnTouchListener(
