@@ -48,11 +48,14 @@ public class MainActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //Creating the link between the button and the youtube video appearing
         button = (Button) findViewById(R.id.videoB);
         youtubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player_view);
         onInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                youtubePlayerView.setVisibility(View.VISIBLE);
                 youTubePlayer.loadVideo("nwVTC9rS3Y0");
             }
 
@@ -78,7 +81,7 @@ public class MainActivity extends YouTubeBaseActivity {
                     }
                 }
         );
-        */
+
         Button needHelpB = findViewById(R.id.needHelpB);
         final ImageView adButlerPicture = findViewById(R.id.adButlerPicture);
 
@@ -89,7 +92,7 @@ public class MainActivity extends YouTubeBaseActivity {
                         moveImage();
                     }
                 }
-        );
+        );*/
     }
 
     public void moveImage(){
